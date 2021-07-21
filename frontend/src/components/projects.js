@@ -9,7 +9,6 @@ import { useTrail, config } from "@react-spring/core"
 import { graphql, useStaticQuery } from "gatsby"
 
 export const Projects = (props) => {
-  
   const data = useStaticQuery(graphql`
     query sanity {
       allSanityProject(sort: { fields: _createdAt, order: ASC }) {
@@ -17,11 +16,7 @@ export const Projects = (props) => {
           node {
             image {
               asset {
-                gatsbyImageData(
-                  width: 500
-                  height: 350
-                  placeholder: DOMINANT_COLOR
-                )
+                gatsbyImageData(width: 500, height: 350, placeholder: BLURRED)
               }
             }
             gitHubUrl
@@ -35,62 +30,6 @@ export const Projects = (props) => {
     }
   `)
 
-  const skillList = [
-    {
-      title: "Atole Tech",
-      src: getImage(data.atole),
-      alt: "atole site",
-      site: "https://atoletech.gatsbyjs.io",
-      text: "Freelance website: Where folklore meets design",
-      tech: "React | JS | Styled-Components | GraphQl",
-      gitHub: "https://github.com/Atole-Media/atole-tech-website",
-    },
-    {
-      title: "Sapa Fashion Store",
-      src: getImage(data.sapa),
-      alt: "ecomerce site",
-      site: "https://sapa-fashion.netlify.app/",
-      text: "An Ecomerce Site Using Shopify",
-      tech: "Gatsby | React | JS | GraphQl | Shopify",
-      gitHub: "https://github.com/UncannyValle/Sapa-fashion",
-    },
-    {
-      title: "Calculator App",
-      src: getImage(data.calculator),
-      alt: "calculator app",
-      site: "https://calcutron.netlify.com",
-      text: "Just a calculator made with React",
-      tech: "React | JS | CSS | HTML | Netlify",
-      gitHub: "https://github.com/UncannyValle/calcutron",
-    },
-    {
-      title: "Avocado Clock",
-      src: getImage(data.avocado),
-      alt: "avocado clock",
-      site: "https://avocadoclock.netlify.app/",
-      text: "A work timer, to keep you motivated",
-      tech: " React | JS| React-Spring",
-      gitHub: "https://github.com/UncannyValle/Avocado-Clock",
-    },
-    {
-      title: "Movie Quoter",
-      src: getImage(data.movie),
-      alt: "movie quote machine",
-      site: "https://movie-quote-machine.netlify.com/",
-      text: "Built in React, uses an external API to access data",
-      tech: "React | JS | CSS | HTML | Netlify",
-      gitHub: "https://github.com/UncannyValle/MovieQuote-machine",
-    },
-    {
-      title: "Mario Drum Machine",
-      src: getImage(data.mario),
-      alt: "mario drummer",
-      site: "https://mp-soundmaker.netlify.com",
-      text: "A sound tester with the music of Mario Paint",
-      tech: "React | JS | CSS | HTML | Netlify",
-      gitHub: "https://github.com/UncannyValle/MarioPaintSoundMachine",
-    },
-  ]
   const boxTrail = useTrail(data.allSanityProject.edges.length, {
     opacity: 1,
     config: config.molasses,
@@ -145,6 +84,6 @@ const SkillsWrapper = styled.div`
   }
   @media (max-width: 768px) {
     grid-template-columns: repeat(1, 1fr);
-    padding: 0 ;
+    padding: 0;
   }
 `

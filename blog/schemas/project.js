@@ -51,26 +51,6 @@ export default {
         hotspot: true,
       },
     },
-
-    // {
-    //   name: "thumbImages",
-    //   title: "Thumb image",
-    //   type: "image",
-    //   fields: [
-    //     {
-    //       name: "caption",
-    //       type: "string",
-    //       title: "Caption",
-    //       options: {
-    //         isHighlighted: true, // <-- make this field easily accessible
-    //       },
-    //     },
-    //   ],
-    //   options: {
-    //     hotspot: true,
-    //   },
-    // },
-
     {
       name: "createdAt",
       title: "Created at",
