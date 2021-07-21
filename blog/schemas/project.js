@@ -18,6 +18,26 @@ export default {
       },
     },
     {
+      name: "description",
+      title: "Description",
+      type: "string",
+    },
+    {
+      name: "tech",
+      title: "Tech",
+      type: "string",
+    },
+    {
+      title: "Project URL",
+      name: "projectUrl",
+      type: "url",
+    },
+    {
+      title: "GitHub URL",
+      name: "gitHubUrl",
+      type: "url",
+    },
+    {
       name: "author",
       title: "Author",
       type: "reference",
@@ -31,6 +51,7 @@ export default {
         hotspot: true,
       },
     },
+
     // {
     //   name: "thumbImages",
     //   title: "Thumb image",
@@ -43,17 +64,13 @@ export default {
     //       options: {
     //         isHighlighted: true, // <-- make this field easily accessible
     //       },
-    //     }, 
+    //     },
     //   ],
     //   options: {
     //     hotspot: true,
     //   },
     // },
-    {
-      name: "description",
-      title: "Description",
-      type: "blockContent",
-    },
+
     {
       name: "createdAt",
       title: "Created at",

@@ -8,55 +8,28 @@ import SectionWrapper from "./sectionWrapper"
 import { useTrail, config } from "@react-spring/core"
 import { graphql, useStaticQuery } from "gatsby"
 
-const SkillsWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-content: center;
-  width: 100%;
-  padding: 0 2rem;
-  grid-gap: 1em 1em;
-  margin: 0 auto;
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-    margin: 0;
-  }
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(1, 1fr);
-    padding: 0 2rem;
-  }
-`
-
 export const Projects = (props) => {
+  
   const data = useStaticQuery(graphql`
-    query images {
-      atole: file(relativePath: { eq: "atole.jpg" }) {
-        childImageSharp {
-          gatsbyImageData(placeholder: BLURRED)
-        }
-      }
-      sapa: file(relativePath: { eq: "sapa.jpg" }) {
-        childImageSharp {
-          gatsbyImageData(placeholder: BLURRED)
-        }
-      }
-      avocado: file(relativePath: { eq: "avocado.jpg" }) {
-        childImageSharp {
-          gatsbyImageData(placeholder: BLURRED)
-        }
-      }
-      movie: file(relativePath: { eq: "movie.png" }) {
-        childImageSharp {
-          gatsbyImageData(placeholder: BLURRED)
-        }
-      }
-      mario: file(relativePath: { eq: "mario.jpg" }) {
-        childImageSharp {
-          gatsbyImageData(placeholder: BLURRED)
-        }
-      }
-      calculator: file(relativePath: { eq: "calcutron.png" }) {
-        childImageSharp {
-          gatsbyImageData(placeholder: BLURRED)
+    query sanity {
+      allSanityProject(sort: { fields: _createdAt, order: ASC }) {
+        edges {
+          node {
+            image {
+              asset {
+                gatsbyImageData(
+                  width: 500
+                  height: 350
+                  placeholder: DOMINANT_COLOR
+                )
+              }
+            }
+            gitHubUrl
+            projectUrl
+            title
+            description
+            tech
+          }
         }
       }
     }
@@ -118,7 +91,7 @@ export const Projects = (props) => {
       gitHub: "https://github.com/UncannyValle/MarioPaintSoundMachine",
     },
   ]
-  const boxTrail = useTrail(skillList.length, {
+  const boxTrail = useTrail(data.allSanityProject.edges.length, {
     opacity: 1,
     config: config.molasses,
     from: {
@@ -134,19 +107,22 @@ export const Projects = (props) => {
             <Skills
               style={style}
               key={i}
-              title={skillList[i].title}
+              title={data.allSanityProject.edges[i].node.title}
               image={
                 <GatsbyImage
-                  image={skillList[i].src}
+                  image={
+                    data.allSanityProject.edges[i].node.image.asset
+                      .gatsbyImageData
+                  }
                   a
-                  alt={skillList[i].alt}
+                  alt={data.allSanityProject.edges[i].node.title}
                   placeholder="blurred"
                 />
               }
-              site={skillList[i].site}
-              text={skillList[i].text}
-              tech={skillList[i].tech}
-              gitHub={skillList[i].gitHub}
+              site={data.allSanityProject.edges[i].node.projectUrl}
+              text={data.allSanityProject.edges[i].node.description}
+              tech={data.allSanityProject.edges[i].node.tech}
+              gitHub={data.allSanityProject.edges[i].node.gitHubUrl}
             />
           ))}
         </SkillsWrapper>
@@ -154,3 +130,21 @@ export const Projects = (props) => {
     </div>
   )
 }
+
+const SkillsWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-content: center;
+  width: 100%;
+  padding: 0 2rem;
+  grid-gap: 1em 1em;
+  margin: 0 auto;
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0 ;
+  }
+`

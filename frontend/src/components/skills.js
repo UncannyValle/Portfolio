@@ -22,12 +22,15 @@ const Wrapper = styled(animated.div)`
   }
   p {
     font-size: 1.2rem;
+    text-align: center;
+    padding: 1rem 0;
     display: inline-block;
   }
 
   @media (max-width: 768px) {
     width: 95%;
     margin: 0 auto;
+    padding: 0;
     p {
       width: 70%;
       text-align: center;
@@ -46,10 +49,12 @@ const Button = styled.a`
   width: 30%;
   color: white;
   margin: 1rem 0;
-  transition: 0.5s all ease-in-out;
+  transition: 0.3s all ease-in-out;
   display: inline-block;
+  border: 3px solid #7c4dff;
   &:hover {
     box-shadow: 0 10px 20px var(--pink), 0 6px 6px var(--pink);
+    border-color: var(--pink);
   }
   &:active {
     box-shadow: none;
