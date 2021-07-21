@@ -2,7 +2,7 @@ import React from "react"
 import Skills from "./skills"
 import Title from "./title"
 import styled from "styled-components"
-import { getImage, GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import SectionWrapper from "./sectionWrapper"
 import { useTrail, config } from "@react-spring/core"
@@ -11,7 +11,7 @@ import { graphql, useStaticQuery } from "gatsby"
 export const Projects = (props) => {
   const data = useStaticQuery(graphql`
     query sanity {
-      allSanityProject(sort: { fields: _createdAt, order: ASC }) {
+      allSanityProject(sort: { fields: createdAt, order: ASC }) {
         edges {
           node {
             image {
